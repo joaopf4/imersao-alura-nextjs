@@ -5,6 +5,7 @@ import QuizLogo from '../src/components/QuizLogo';
 import QuizBackground from '../src/components/QuizBackground';
 import Footer from '../src/components/Footer';
 import GitHubCorner from '../src/components/GitHubCorner';
+import Head from 'next/head';
 
 // const BackgroudnImage = styled.div`
 //   background-image: url(${db.bg});
@@ -29,6 +30,11 @@ const QuizContainer = styled.div `
 export default function Home() {
   return (
     <QuizBackground backgroundImage={db.bg}>
+      <Head>
+        <title>Quiz Imersão Alura</title>
+        <meta name="viewport"/>
+        <meta property="og:image" content="https://i2.wp.com/css-tricks.com/wp-content/uploads/2017/06/css-is-awesome-scaled.jpg?resize=1536%2C1208&ssl=1"/>
+      </Head>
       <QuizContainer>
         <QuizLogo />
         <Widget>
