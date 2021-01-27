@@ -9,8 +9,6 @@ const Wrapper = styled.div`
   z-index: 20;
 `;
 
-
-
 const SVGWrapper = styled.svg`
   fill: ${({ theme }) => theme.colors.secondary};
   color: ${({ theme }) => theme.colors.contrastText};
@@ -46,4 +44,4 @@ export default function GitHubCorner({ projectUrl }) {
       </a>
     </Wrapper>
   );
-} 
+}
