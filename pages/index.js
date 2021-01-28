@@ -4,13 +4,13 @@ import styled from 'styled-components';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import db from '../db.json';
-import { Widget } from '../src/components/Widget';
+import Widget from '../src/components/Widget';
 import QuizLogo from '../src/components/QuizLogo';
 import QuizBackground from '../src/components/QuizBackground';
 import Footer from '../src/components/Footer';
 import GitHubCorner from '../src/components/GitHubCorner';
-import { Button } from '../src/components/Button';
-import { Input } from '../src/components/Input';
+import Button from '../src/components/Button';
+import Input from '../src/components/Input';
 
 // const BackgroudnImage = styled.div`
 //   background-image: url(${db.bg});
@@ -33,7 +33,6 @@ const QuizContainer = styled.div`
 export default function Home() {
   const router = useRouter();
   const [name, setName] = React.useState('');
-  console.log('retorno do useState', name, setName);
 
   return (
     <QuizBackground backgroundImage={db.bg}>
@@ -52,23 +51,20 @@ export default function Home() {
             <h1>{db.title}</h1>
           </Widget.Header>
           <Widget.Content>
-            <form onSubmit={function(event) {
+            <form onSubmit={(event) => {
               event.preventDefault();
               router.push(`/quiz?name=${name}`);
               console.log('Fazendo submissão form');
             }}
             >
               <Input
-                onChange={function(event) {
-                  console.log(event.target.value);
-                  setName(event.target.value);
-                }}
+                name="nomeDoUsuario"
+                onChange={(event) => { setName(event.target.value); }}
                 placeholder="seu nome"
+                value={name}
               />
               <Button type="submit" disabled={name.length === 0}>
-                <h4>
-                  {`Jogar ${name}`}
-                </h4>
+                {`Jogar ${name}`}
               </Button>
             </form>
             <p>{db.description}</p>
