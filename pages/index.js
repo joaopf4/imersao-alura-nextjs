@@ -54,7 +54,6 @@ export default function Home() {
             <form onSubmit={(event) => {
               event.preventDefault();
               router.push(`/quiz?name=${name}`);
-              console.log('Fazendo submissão form');
             }}
             >
               <Input
@@ -80,7 +79,7 @@ export default function Home() {
         </Widget>
         <Footer />
       </QuizContainer>
-      <GitHubCorner projectUrl="https://github.com/omariosouto" />
+      <GitHubCorner projectUrl="https://github.com/joaopf4" />
     </QuizBackground>
   );
 }
