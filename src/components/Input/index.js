@@ -11,7 +11,7 @@ export const InputBase = styled.input`
   border: 1px solid ${({ theme }) => theme.colors.primary};
   background-color: ${({ theme }) => theme.colors.contrastText};
   color: ${({ theme }) => theme.colors.primary};
-  border-radius: ${({ theme }) => theme.colors.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius};
   overflow: hidden;
   margin-bottom: 25px;
   h4 {
