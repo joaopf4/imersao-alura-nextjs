@@ -27,7 +27,8 @@
       }
     ],
     "external": [
-      ""
+      "https://quiz-justiceleague.levi-magny.vercel.app/",
+      "https://aluraquiz-coffee.leonardot07.vercel.app/"
     ],
     "theme": {
       "colors": {
@@ -38,6 +39,6 @@
         "wrong": "#FF5722",
         "success": "#4CAF50"
       },
-      "borderRadius": "4px"
+      "borderRadius": "6px"
     }
   }
