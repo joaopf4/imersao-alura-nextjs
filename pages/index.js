@@ -35,7 +35,6 @@ const QuizContainer = styled.div`
 export default function Home() {
   const router = useRouter();
   const [name, setName] = React.useState('');
-  // const [comma, setComma] = React.useState('');
 
   return (
     <QuizBackground backgroundImage={db.bg}>
@@ -79,7 +78,7 @@ export default function Home() {
                 value={name}
               />
               <Button type="submit" disabled={name.length === 0}>
-                {`Pronto pra girar${name === '' ? '' : ','} ${name}?`}
+                {`Pronto pra girar${name === '' ? '' : ', '}${name}?`}
               </Button>
               <Widget.Warning>
                 <p data-disabled={name.length === 0}>Warning: Sem nome, sem quiz!</p>
@@ -100,7 +99,7 @@ export default function Home() {
           animate="show"
         >
           <Widget.Content>
-            <h1>Quizes da Galera</h1>
+            <h1>Mais Quizes feitos nessa imersão!</h1>
             <ul>
               {db.external.map((linkExternalQuiz) => {
                 const [projectName, githubUser] = linkExternalQuiz
