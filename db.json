@@ -1,30 +1,69 @@
 {
-    "bg": "https://i2.wp.com/css-tricks.com/wp-content/uploads/2017/06/css-is-awesome-scaled.jpg?resize=1536%2C1208&ssl=1",
-    "title": "Quiz CSS da Alura",
-    "description": "Teste os seus conhecimentos sobre CSS e vamos ver quantos layouts você vai deixar de quebrar",
+    "bg": "https://keyassets.timeincuk.net/inspirewp/live/wp-content/uploads/sites/2/2019/01/The-Great-War-Sportive-Groote-Oorlog-Sportive-DG-20-e1557930005752.jpg",
+    "title": "Cycling Quiz!",
+    "description": "Teste seus conhecimentos sobre mecânica de bicicletas, cicloativismo, ciclismo esportivo e afins!",
     "questions": [
       {
-        "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
-        "title": "Como fazer um seletor por id via CSS?",
-        "description": "Essa é pra aquecer",
+        "image": "https://pedaleria.com/wp-content/uploads/2016/08/BNR_Pedivela_Monobloco.jpg",
+        "title": "Como é chamado o tipo de pedivela da img acima?",
+        "description": "As barras fortes usavam esse aí",
         "answer": 2,
         "alternatives": [
-          ".elemento",
-          "*elemento",
-          "#elemento",
-          "%elemento"
+          "pedivela integrado",
+          "pedivela 3 peças",
+          "pedivela monobloco",
+          "pedivela ponta quadrada"
         ]
       },
       {
-        "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
-        "title": "Como fazer um background gradiente com css?",
-        "description": "Faz tempo em haha",
+        "image": "https://media.giphy.com/media/7EOu3A9mywY2QkWlIn/giphy.gif",
+        "title": "À qual ciclista é entregue a famosa camisa branca com bolinhas vermelhas durante o Tour de France?",
+        "description": "Ahh, essa é fácil!",
+        "answer": 3,
+        "alternatives": [
+          "Ao(à) ciclista com melhor desempenho nos sprints finais",
+          "Ao(à) ciclista com menor tempo acumulado em todas as etapas",
+          "Ao(à) ciclista que fez maior número de ultrapassagens em uma etapa",
+          "Ao(à) ciclista com melhor desempenho nas etapas de montanha"
+        ]
+      },
+      {
+        "image": "https://static.dooca.com.br/vellocicle/product/camara-de-ar-pirelli-aro-26-valvula-schrader-grossa-15601879444972_1600x1600+fill_ffffff.jpg?webp",
+        "title": "Qual das opções abaixo não é uma medida de tamanho de câmara de ar?",
+        "description": "Cada pneu com sua borracha",
+        "answer": 1,
+        "alternatives": [
+          "700 x  23",
+          "24 x 2/8",
+          "26 x 1.8",
+          "29 x 2.5"
+        ]
+      },
+      {
+        "image": "https://pedaleria.com/wp-content/uploads/2014/07/img-Caixa_de_Direcao_Estrelinha.jpg",
+        "title": "Como é chamado o sistema de direção que recebe um garfo com espiga lisa?",
+        "description": "Não é direção hidráulica...",
         "answer": 0,
         "alternatives": [
-           "background: linear-gradient(#e66465, #9198e5);",
-           "background: gradient(#e66465, #9198e5);"
+          "Direção ahead-set",
+          "Direção over-size",
+          "Direção tubular",
+          "Direção regular-size"
+        ]
+      },
+      {
+        "image": "https://media.giphy.com/media/MuEF1omxpdH7q/giphy.gif",
+        "title": "Em qual prova ocorreu esse 'massive crash' que viralizou em gifs por aí?",
+        "description": "É, trem foi feio aí, rs",
+        "answer": 1,
+        "alternatives": [
+          "US National Criterium",
+          "Red Hook Criterium",
+          "Rad Race",
+          "Tour de Freitas"
         ]
       }
+
     ],
     "external": [
       "https://quiz-justiceleague.levi-magny.vercel.app/",

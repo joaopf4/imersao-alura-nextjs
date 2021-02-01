@@ -35,6 +35,7 @@ const QuizContainer = styled.div`
 export default function Home() {
   const router = useRouter();
   const [name, setName] = React.useState('');
+  const [comma, setComma] = React.useState('');
 
   return (
     <QuizBackground backgroundImage={db.bg}>
@@ -69,12 +70,17 @@ export default function Home() {
             >
               <Input
                 name="nomeDoUsuario"
-                onChange={(event) => { setName(event.target.value); }}
+                onChange={
+                  (event) => {
+                    setName(event.target.value);
+                    setComma(',');
+                  }
+                }
                 placeholder="seu nome"
                 value={name}
               />
               <Button type="submit" disabled={name.length === 0}>
-                {`Jogar ${name}`}
+                {`Pronto pra girar${comma} ${name}?`}
               </Button>
             </form>
             <p>{db.description}</p>
