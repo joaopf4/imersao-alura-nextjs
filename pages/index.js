@@ -35,7 +35,7 @@ const QuizContainer = styled.div`
 export default function Home() {
   const router = useRouter();
   const [name, setName] = React.useState('');
-  const [comma, setComma] = React.useState('');
+  // const [comma, setComma] = React.useState('');
 
   return (
     <QuizBackground backgroundImage={db.bg}>
@@ -73,15 +73,17 @@ export default function Home() {
                 onChange={
                   (event) => {
                     setName(event.target.value);
-                    setComma(',');
                   }
                 }
-                placeholder="seu nome"
+                placeholder="Diz aí seu nome!"
                 value={name}
               />
               <Button type="submit" disabled={name.length === 0}>
-                {`Pronto pra girar${comma} ${name}?`}
+                {`Pronto pra girar${name === '' ? '' : ','} ${name}?`}
               </Button>
+              <Widget.Warning>
+                <p data-disabled={name.length === 0}>Warning: Sem nome, sem quiz!</p>
+              </Widget.Warning>
             </form>
             <p>{db.description}</p>
           </Widget.Content>
@@ -111,7 +113,8 @@ export default function Home() {
                   <li key={linkExternalQuiz}>
                     <Widget.Topic
                       as={Link}
-                      href={`/quiz/${projectName}__${githubUser}`}
+                      href={name.length === 0 ? '/' : `/quiz/${projectName}__${githubUser}`}
+                      data-disabled={name.length === 0}
                     >
                       {`${projectName} / ${githubUser}`}
                     </Widget.Topic>

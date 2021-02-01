@@ -25,7 +25,7 @@ Widget.Header = styled.header`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 18px 32px;
+  padding: 18px 22px;
   background-color: ${({ theme }) => theme.colors.primary};
   *{
     margin:0;
@@ -58,6 +58,29 @@ Widget.Topic = styled.a`
   &:hover,
   &:focus {
     opacity: .5;
+  }
+
+  &[data-disabled="true"] {
+    cursor: not-allowed;
+    opacity: .4;
+    background-color: #979797;
+  }
+`;
+
+Widget.Warning = styled.div`
+  background-color: transparent;
+  margin: 10px auto;
+  border-radius: 5px;
+  border: none;
+  padding: 0px 2px;
+  width: 95%;
+  p {
+    color: ${({ theme }) => theme.colors.wrong};
+    font-weight: 500;
+    margin: 0;
+  }
+  [data-disabled="false"] {
+    display: none;
   }
 `;
 

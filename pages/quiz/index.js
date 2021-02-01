@@ -7,6 +7,7 @@ import QuizBackground from '../../src/components/QuizBackground';
 import QuizContainer from '../../src/components/QuizContainer';
 import AlternativesForm from '../../src/components/AlternativesForm';
 import Button from '../../src/components/Button';
+import BackLinkArrow from '../../src/components/BackLinkArrow';
 
 function ResultWidget({ results }) {
   return (
@@ -78,10 +79,10 @@ function QuestionWidget({
   return (
     <Widget>
       <Widget.Header>
-        {/* <BackLinkArrow href="/" /> */}
-        <h3>
+        <BackLinkArrow href="/" />
+        <h2>
           {`Pergunta ${questionIndex + 1} de ${totalQuestions}`}
-        </h3>
+        </h2>
       </Widget.Header>
 
       <img
