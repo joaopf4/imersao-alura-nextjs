@@ -39,7 +39,6 @@ export default function Home() {
   return (
     <QuizBackground backgroundImage={db.bg}>
       <Head>
-        <title>Quiz Imersão Alura</title>
         <meta name="viewport" />
         <meta property="og:image" content="https://i2.wp.com/css-tricks.com/wp-content/uploads/2017/06/css-is-awesome-scaled.jpg?resize=1536%2C1208&ssl=1" />
         <meta property="og:image:type" content="image/jpg" />
