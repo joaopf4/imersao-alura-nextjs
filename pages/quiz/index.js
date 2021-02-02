@@ -14,6 +14,7 @@ function ResultWidget({ results }) {
   return (
     <Widget>
       <Widget.Header>
+        <BackLinkArrow href="/" />
         Tela de Resultado:
       </Widget.Header>
 
@@ -50,15 +51,17 @@ function ResultWidget({ results }) {
   );
 }
 
+// função que gera o widget de cada questão através do map
 function QuestionWidget({
-  question,
-  questionIndex,
-  totalQuestions,
-  onSubmit,
+  question, // objeto question
+  questionIndex, // indice da questão no array de questions
+  totalQuestions, // total de questões no array de questions
+  onSubmit, // função para atualizar a questão dps de respondida
   addResult,
 }) {
   const [selectedAlternative, setSelectedAlternative] = React.useState(undefined);
   const [isQuestionSubmited, setIsQuestionSubmited] = React.useState(false);
+  const [rightAlternative, setRightAlternative] = React.useState(undefined);
   const questionId = `question__${questionIndex}`;
   const isCorrect = selectedAlternative === question.answer;
   const hasAlternativeSelected = selectedAlternative !== undefined;
@@ -93,11 +96,13 @@ function QuestionWidget({
           onSubmit={(infosDoEvento) => {
             infosDoEvento.preventDefault();
             setIsQuestionSubmited(true);
+            setRightAlternative(true);
             setTimeout(() => {
               addResult(isCorrect);
-              onSubmit();
+              setRightAlternative(undefined);
               setIsQuestionSubmited(false);
               setSelectedAlternative(undefined);
+              onSubmit();
             }, 2 * 1000);
           }}
         >
@@ -111,7 +116,10 @@ function QuestionWidget({
                 key={alternativeId}
                 htmlFor={alternativeId}
                 data-selected={isSelected}
-                data-status={isQuestionSubmited && alternativeStatus}
+                data-status={isQuestionSubmited && isSelected && alternativeStatus}
+                data-right={
+                  isQuestionSubmited && alternativeIndex === question.answer && rightAlternative
+                }
               >
                 <input
                   style={{ display: 'none' }}
@@ -119,6 +127,7 @@ function QuestionWidget({
                   name={questionId}
                   onChange={() => setSelectedAlternative(alternativeIndex)}
                   type="radio"
+                  checked={isSelected}
                 />
                 {alternative}
               </Widget.Topic>
