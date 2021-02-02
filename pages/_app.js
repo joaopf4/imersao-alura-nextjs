@@ -39,7 +39,12 @@ export default function App({ Component, pageProps }) {
         <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
         <title>Cycling Quiz</title>
         <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+
+        <meta name="viewport" />
+        <meta property="og:image" content={db.bg} />
+        <meta property="og:image:type" content="image/jpg" />
+        <meta property="og:image:width" content="800" />
+        <meta property="og:image:height" content="600" />
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyle />

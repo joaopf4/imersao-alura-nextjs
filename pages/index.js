@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import styled from 'styled-components';
-import Head from 'next/head';
 import { motion } from 'framer-motion'; // npm install framer-motion
 import { useRouter } from 'next/router';
 import db from '../db.json';
@@ -38,13 +37,6 @@ export default function Home() {
 
   return (
     <QuizBackground backgroundImage={db.bg}>
-      <Head>
-        <meta name="viewport" />
-        <meta property="og:image" content="https://i2.wp.com/css-tricks.com/wp-content/uploads/2017/06/css-is-awesome-scaled.jpg?resize=1536%2C1208&ssl=1" />
-        <meta property="og:image:type" content="image/jpg" />
-        <meta property="og:image:width" content="800" />
-        <meta property="og:image:height" content="600" />
-      </Head>
       <QuizContainer>
         <QuizLogo />
         <Widget
