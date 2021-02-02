@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { motion } from 'framer-motion';
 import db from '../../db.json';
 import Widget from '../../src/components/Widget';
 import QuizLogo from '../../src/components/QuizLogo';
@@ -9,6 +8,7 @@ import QuizContainer from '../../src/components/QuizContainer';
 import AlternativesForm from '../../src/components/AlternativesForm';
 import Button from '../../src/components/Button';
 import BackLinkArrow from '../../src/components/BackLinkArrow';
+import LoadingWidget from '../../src/components/LoadingWidget';
 
 function ResultWidget({ results }) {
   return (
@@ -45,24 +45,6 @@ function ResultWidget({ results }) {
             </li>
           ))}
         </ul>
-      </Widget.Content>
-    </Widget>
-  );
-}
-
-function LoadingWidget() {
-  return (
-    <Widget>
-      <Widget.Header>
-        Carregando...
-      </Widget.Header>
-
-      <Widget.Content>
-        <motion.div
-          className="container"
-          whileHover={{ scale: 1.2, rotate: 90 }}
-          whileTap={{ scale: 0.8, rotate: -90, borderRadius: '100%' }}
-        />
       </Widget.Content>
     </Widget>
   );
@@ -186,7 +168,7 @@ export default function QuizPage() {
     // fetch() ...
     setTimeout(() => {
       setScreenState(screenStates.QUIZ);
-    }, 1 * 1000);
+    }, 3 * 1000);
   // nasce === didMount
   }, []);
 
