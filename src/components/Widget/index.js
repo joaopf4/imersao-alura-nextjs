@@ -43,6 +43,10 @@ Widget.Content = styled.div`
   }
 `;
 
+Widget.Loading = styled.div`
+height: 250px;
+`;
+
 Widget.Topic = styled.a`
   outline: 0;
   text-decoration: none;

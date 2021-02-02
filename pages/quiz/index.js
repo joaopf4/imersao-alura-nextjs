@@ -8,6 +8,7 @@ import QuizContainer from '../../src/components/QuizContainer';
 import AlternativesForm from '../../src/components/AlternativesForm';
 import Button from '../../src/components/Button';
 import BackLinkArrow from '../../src/components/BackLinkArrow';
+import LoadingWidget from '../../src/components/LoadingWidget';
 
 function ResultWidget({ results }) {
   return (
@@ -44,20 +45,6 @@ function ResultWidget({ results }) {
             </li>
           ))}
         </ul>
-      </Widget.Content>
-    </Widget>
-  );
-}
-
-function LoadingWidget() {
-  return (
-    <Widget>
-      <Widget.Header>
-        Carregando...
-      </Widget.Header>
-
-      <Widget.Content>
-        [Desafio do Loading]
       </Widget.Content>
     </Widget>
   );
@@ -181,7 +168,7 @@ export default function QuizPage() {
     // fetch() ...
     setTimeout(() => {
       setScreenState(screenStates.QUIZ);
-    }, 1 * 1000);
+    }, 3 * 1000);
   // nasce === didMount
   }, []);
 
