@@ -5,7 +5,6 @@ import styled from 'styled-components';
 // eslint-disable-next-line import/prefer-default-export
 export const InputBase = styled.input`
   margin-top: 12px;
-  margin-bottom: 12px;
   padding: 15px;
   width: 100%;
   border: 1px solid ${({ theme }) => theme.colors.primary};

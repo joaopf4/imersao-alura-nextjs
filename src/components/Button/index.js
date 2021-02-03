@@ -20,7 +20,11 @@ const Button = styled.button`
 
   &:hover,
   &:focus {
-    background-color: ${({ theme }) => theme.colors.success};
+    background-color: ${({ theme }) => theme.colors.secondary};
+  }
+  &:active {
+    transform: translateY(3px);
+    transition: .25s;
   }
   &:disabled {
     background-color: #979797;

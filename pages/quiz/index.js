@@ -93,8 +93,8 @@ function QuestionWidget({
         </p>
 
         <AlternativesForm
-          onSubmit={(infosDoEvento) => {
-            infosDoEvento.preventDefault();
+          onSubmit={(event) => {
+            event.preventDefault();
             setIsQuestionSubmited(true);
             setRightAlternative(true);
             setTimeout(() => {
@@ -177,7 +177,7 @@ export default function QuizPage() {
     // fetch() ...
     setTimeout(() => {
       setScreenState(screenStates.QUIZ);
-    }, 3 * 1000);
+    }, 1 * 1000);
   // nasce === didMount
   }, []);
 

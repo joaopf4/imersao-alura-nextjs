@@ -37,8 +37,14 @@ export default function Footer(props) {
         {' '}
         a
         {' '}
-        <a href="https://www.alura.com.br/">
+        <a target="blank" href="https://www.alura.com.br/">
           <span>Imersão React da Alura</span>
+        </a>
+        {' '}
+        por
+        {' '}
+        <a target="blank" href="https://portfolio-joaopfa.vercel.app/">
+          <span>João Pedro</span>
         </a>
       </p>
     </FooterWrapper>
