@@ -51,7 +51,7 @@ Widget.Topic = styled.a`
   outline: 0;
   text-decoration: none;
   color: ${({ theme }) => theme.colors.contrastText};
-  background-color: ${({ theme }) => `${theme.colors.primary}50`};
+  background-color: ${({ theme }) => `${theme.colors.primary}70`};
   padding: 10px 15px;
   margin-bottom: 8px;
   cursor: pointer;
@@ -59,7 +59,9 @@ Widget.Topic = styled.a`
   transition: .3s;
   display: block;
   
-  &:hover {
+  &:hover,
+  &:focus
+   {
     background-color: ${({ theme }) => theme.colors.primary};
     transform: translateX(10px);
   }
@@ -68,6 +70,10 @@ Widget.Topic = styled.a`
     cursor: not-allowed;
     opacity: .4;
     background-color: #979797;
+  }
+
+  &[rightAnswer="true"] {
+    background-color: ${(props) => (props.rightAnswer ? 'green' : 'red')};
   }
 `;
 

@@ -65,6 +65,13 @@ function QuestionWidget({
   const questionId = `question__${questionIndex}`;
   const isCorrect = selectedAlternative === question.answer;
   const hasAlternativeSelected = selectedAlternative !== undefined;
+  const [rightAnswer, setRightAnswer] = React.useState(false);
+
+  function handleAnswer() {
+    if (!isCorrect) {
+      setRightAnswer(true);
+    }
+  }
 
   return (
     <Widget>
@@ -102,8 +109,9 @@ function QuestionWidget({
               setRightAlternative(undefined);
               setIsQuestionSubmited(false);
               setSelectedAlternative(undefined);
+              handleAnswer();
               onSubmit();
-            }, 2 * 1000);
+            }, 7 * 1000);
           }}
         >
           {question.alternatives.map((alternative, alternativeIndex) => {
@@ -117,9 +125,7 @@ function QuestionWidget({
                 htmlFor={alternativeId}
                 data-selected={isSelected}
                 data-status={isQuestionSubmited && isSelected && alternativeStatus}
-                data-right={
-                  isQuestionSubmited && alternativeIndex === question.answer && rightAlternative
-                }
+                rightAnswer={rightAnswer || alternativeIndex === question.answer} // tá difícil
               >
                 <input
                   style={{ display: 'none' }}
@@ -128,8 +134,12 @@ function QuestionWidget({
                   onChange={() => setSelectedAlternative(alternativeIndex)}
                   type="radio"
                   checked={isSelected}
+                  disabled={rightAlternative}
                 />
                 {alternative}
+                {/* {
+                console.log(alternativeIndex, question.answer)
+                } */}
               </Widget.Topic>
             );
           })}
@@ -137,11 +147,21 @@ function QuestionWidget({
           {/* <pre>
             {JSON.stringify(question, null, 4)}
           </pre> */}
-          <Button type="submit" disabled={!hasAlternativeSelected}>
+          <Button type="submit" disabled={!hasAlternativeSelected || isQuestionSubmited}>
             Confirmar
           </Button>
           {isQuestionSubmited && isCorrect && <p>Você acertou!</p>}
-          {isQuestionSubmited && !isCorrect && <p>Você errou!</p>}
+          {isQuestionSubmited && !isCorrect && (
+          <p>
+            Você errou! A alternativa correta seria:
+            {' '}
+            <br />
+            <br />
+            <Widget.Topic>
+              {question.alternatives[question.answer]}
+            </Widget.Topic>
+          </p>
+          )}
         </AlternativesForm>
       </Widget.Content>
     </Widget>
@@ -177,7 +197,7 @@ export default function QuizPage() {
     // fetch() ...
     setTimeout(() => {
       setScreenState(screenStates.QUIZ);
-    }, 1 * 1000);
+    }, 1 * 200);
   // nasce === didMount
   }, []);
 
