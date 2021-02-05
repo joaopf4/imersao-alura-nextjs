@@ -14,6 +14,7 @@ function ResultWidget({ results }) {
   return (
     <Widget>
       <Widget.Header>
+        <BackLinkArrow href="/" />
         Tela de Resultado:
       </Widget.Header>
 
@@ -50,18 +51,27 @@ function ResultWidget({ results }) {
   );
 }
 
+// função que gera o widget de cada questão através do map
 function QuestionWidget({
-  question,
-  questionIndex,
-  totalQuestions,
-  onSubmit,
+  question, // objeto question
+  questionIndex, // indice da questão no array de questions
+  totalQuestions, // total de questões no array de questions
+  onSubmit, // função para atualizar a questão dps de respondida
   addResult,
 }) {
   const [selectedAlternative, setSelectedAlternative] = React.useState(undefined);
   const [isQuestionSubmited, setIsQuestionSubmited] = React.useState(false);
+  const [rightAlternative, setRightAlternative] = React.useState(undefined);
   const questionId = `question__${questionIndex}`;
   const isCorrect = selectedAlternative === question.answer;
   const hasAlternativeSelected = selectedAlternative !== undefined;
+  const [rightAnswer, setRightAnswer] = React.useState(false);
+
+  function handleAnswer() {
+    if (!isCorrect) {
+      setRightAnswer(true);
+    }
+  }
 
   return (
     <Widget>
@@ -90,15 +100,18 @@ function QuestionWidget({
         </p>
 
         <AlternativesForm
-          onSubmit={(infosDoEvento) => {
-            infosDoEvento.preventDefault();
+          onSubmit={(event) => {
+            event.preventDefault();
             setIsQuestionSubmited(true);
+            setRightAlternative(true);
             setTimeout(() => {
               addResult(isCorrect);
-              onSubmit();
+              setRightAlternative(undefined);
               setIsQuestionSubmited(false);
               setSelectedAlternative(undefined);
-            }, 2 * 1000);
+              handleAnswer();
+              onSubmit();
+            }, 7 * 1000);
           }}
         >
           {question.alternatives.map((alternative, alternativeIndex) => {
@@ -111,7 +124,8 @@ function QuestionWidget({
                 key={alternativeId}
                 htmlFor={alternativeId}
                 data-selected={isSelected}
-                data-status={isQuestionSubmited && alternativeStatus}
+                data-status={isQuestionSubmited && isSelected && alternativeStatus}
+                rightAnswer={rightAnswer || alternativeIndex === question.answer} // tá difícil
               >
                 <input
                   style={{ display: 'none' }}
@@ -119,8 +133,13 @@ function QuestionWidget({
                   name={questionId}
                   onChange={() => setSelectedAlternative(alternativeIndex)}
                   type="radio"
+                  checked={isSelected}
+                  disabled={rightAlternative}
                 />
                 {alternative}
+                {/* {
+                console.log(alternativeIndex, question.answer)
+                } */}
               </Widget.Topic>
             );
           })}
@@ -128,11 +147,21 @@ function QuestionWidget({
           {/* <pre>
             {JSON.stringify(question, null, 4)}
           </pre> */}
-          <Button type="submit" disabled={!hasAlternativeSelected}>
+          <Button type="submit" disabled={!hasAlternativeSelected || isQuestionSubmited}>
             Confirmar
           </Button>
           {isQuestionSubmited && isCorrect && <p>Você acertou!</p>}
-          {isQuestionSubmited && !isCorrect && <p>Você errou!</p>}
+          {isQuestionSubmited && !isCorrect && (
+          <p>
+            Você errou! A alternativa correta seria:
+            {' '}
+            <br />
+            <br />
+            <Widget.Topic>
+              {question.alternatives[question.answer]}
+            </Widget.Topic>
+          </p>
+          )}
         </AlternativesForm>
       </Widget.Content>
     </Widget>
@@ -168,7 +197,7 @@ export default function QuizPage() {
     // fetch() ...
     setTimeout(() => {
       setScreenState(screenStates.QUIZ);
-    }, 3 * 1000);
+    }, 1 * 200);
   // nasce === didMount
   }, []);
 
