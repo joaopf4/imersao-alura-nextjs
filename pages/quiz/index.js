@@ -111,7 +111,7 @@ function QuestionWidget({
               setSelectedAlternative(undefined);
               handleAnswer();
               onSubmit();
-            }, 7 * 1000);
+            }, 2 * 1000);
           }}
         >
           {question.alternatives.map((alternative, alternativeIndex) => {
@@ -197,7 +197,7 @@ export default function QuizPage() {
     // fetch() ...
     setTimeout(() => {
       setScreenState(screenStates.QUIZ);
-    }, 1 * 200);
+    }, 2 * 1000);
   // nasce === didMount
   }, []);
 
