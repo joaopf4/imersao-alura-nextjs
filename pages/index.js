@@ -63,6 +63,7 @@ export default function Home() {
                 onChange={
                   (event) => {
                     setName(event.target.value);
+                    sessionStorage.setItem('name', event.target.value);
                   }
                 }
                 placeholder="Diz aí seu nome!"

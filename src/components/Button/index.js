@@ -18,8 +18,7 @@ const Button = styled.button`
   cursor: pointer;
   transition: .3s;
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: ${({ theme }) => theme.colors.secondary};
   }
   &:active {

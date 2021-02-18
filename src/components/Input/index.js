@@ -9,15 +9,10 @@ export const InputBase = styled.input`
   width: 100%;
   border: 1px solid ${({ theme }) => theme.colors.primary};
   background-color: ${({ theme }) => theme.colors.contrastText};
-  color: ${({ theme }) => theme.colors.primary};
+  font-weight: 700;
   border-radius: ${({ theme }) => theme.borderRadius};
   overflow: hidden;
   margin-bottom: 25px;
-  h4 {
-    font-weight: 700;
-    line-height: 1;
-    margin: 0;
-  }
 `;
 export default function Input({ onChange, placeholder, ...props }) {
   return (
