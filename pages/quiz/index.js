@@ -10,7 +10,27 @@ import Button from '../../src/components/Button';
 import BackLinkArrow from '../../src/components/BackLinkArrow';
 import LoadingWidget from '../../src/components/LoadingWidget';
 
+const ResultMessage = {
+  INITIAL: ['Calculando...', 'https://media.giphy.com/media/3o6ozymuzrBpskGS88/giphy.gif'],
+  FAIL: ['É, numa cicloviagem tu ia pegar rabo, rsrs', 'https://media.giphy.com/media/MuI3ZwofXpd1ykijzE/giphy.gif'],
+  NOTBAD: ['Ó, num rolê de galera tu já consegue entrosar!', 'https://media.giphy.com/media/3o7TKEV1V6NlTz16Zq/giphy.gif'],
+  SUCCESS: ['Aêê! Tu é bixão memo!', 'https://media.giphy.com/media/11nPtzt27joQQ8/giphy.gif'],
+};
+
 function ResultWidget({ results }) {
+  const Score = Math.floor(results.reduce((score, weight) => score + weight, 0) * 100);
+  const [[scoreMessage, scoreAnimation], setScoreMessage] = React.useState(ResultMessage.INITIAL);
+
+  React.useEffect(() => {
+    if (Score >= 40) {
+      setScoreMessage(ResultMessage.SUCCESS);
+    } else if (Score > 20) {
+      setScoreMessage(ResultMessage.NOTBAD);
+    } else {
+      setScoreMessage(ResultMessage.FAIL);
+    }
+  }, []);
+
   return (
     <Widget>
       <Widget.Header>
@@ -18,32 +38,37 @@ function ResultWidget({ results }) {
         Tela de Resultado:
       </Widget.Header>
 
+      <Widget.Result>
+        <h2>{scoreMessage}</h2>
+        <img
+          alt="Descrição"
+          style={{
+            width: '100%',
+            height: '150px',
+            objectFit: 'cover',
+          }}
+          src={scoreAnimation}
+        />
+      </Widget.Result>
+
       <Widget.Content>
-        <p>
-          Você acertou
-          {' '}
-          {/* {results.reduce((somatoriaAtual, resultAtual) => {
-            const isAcerto = resultAtual === true;
-            if (isAcerto) {
-              return somatoriaAtual + 1;
-            }
-            return somatoriaAtual;
-          }, 0)} */}
-          {results.filter((x) => x).length}
-          {' '}
-          perguntas
-        </p>
+        <p>{ `Você fez ${Score} ${(Score > 1 || Score === 0) ? 'Pontos' : 'Ponto'}!` }</p>
         <ul>
           {results.map((result, index) => (
-            <li key={`result__${result}`}>
-              #
-              {index + 1}
-              {' '}
-              Resultado:
-              {result === true
-                ? 'Acertou'
-                : 'Errou'}
-            </li>
+            <Widget.Result
+              as="label"
+              transition={{ delay: (index) / 10, duration: 0.4 }}
+              variants={{
+                show: { opacity: 1, x: '0' },
+                hidden: { opacity: 0, x: '-30%' },
+              }}
+              initial="hidden"
+              animate="show"
+              key={`result__${result}`}
+              data-correct={result > 0}
+            >
+              <p>{`QUESTÃO ${index + 1}: ${result > 0 ? 'Resposta Certa!' : 'Resposta Errada!'}`}</p>
+            </Widget.Result>
           ))}
         </ul>
       </Widget.Content>
@@ -65,13 +90,6 @@ function QuestionWidget({
   const questionId = `question__${questionIndex}`;
   const isCorrect = selectedAlternative === question.answer;
   const hasAlternativeSelected = selectedAlternative !== undefined;
-  const [rightAnswer, setRightAnswer] = React.useState(false);
-
-  function handleAnswer() {
-    if (!isCorrect) {
-      setRightAnswer(true);
-    }
-  }
 
   return (
     <Widget>
@@ -109,7 +127,7 @@ function QuestionWidget({
               setRightAlternative(undefined);
               setIsQuestionSubmited(false);
               setSelectedAlternative(undefined);
-              handleAnswer();
+              // handleAnswer();
               onSubmit();
             }, 2 * 1000);
           }}
@@ -125,7 +143,9 @@ function QuestionWidget({
                 htmlFor={alternativeId}
                 data-selected={isSelected}
                 data-status={isQuestionSubmited && isSelected && alternativeStatus}
-                rightAnswer={rightAnswer || alternativeIndex === question.answer} // tá difícil
+                data-right={
+                  isQuestionSubmited && alternativeIndex === question.answer && rightAlternative
+                }
               >
                 <input
                   style={{ display: 'none' }}
@@ -137,9 +157,6 @@ function QuestionWidget({
                   disabled={rightAlternative}
                 />
                 {alternative}
-                {/* {
-                console.log(alternativeIndex, question.answer)
-                } */}
               </Widget.Topic>
             );
           })}
@@ -150,18 +167,8 @@ function QuestionWidget({
           <Button type="submit" disabled={!hasAlternativeSelected || isQuestionSubmited}>
             Confirmar
           </Button>
-          {isQuestionSubmited && isCorrect && <p>Você acertou!</p>}
-          {isQuestionSubmited && !isCorrect && (
-          <p>
-            Você errou! A alternativa correta seria:
-            {' '}
-            <br />
-            <br />
-            <Widget.Topic>
-              {question.alternatives[question.answer]}
-            </Widget.Topic>
-          </p>
-          )}
+          {isQuestionSubmited && isCorrect && <p>Dalee!</p>}
+          {isQuestionSubmited && !isCorrect && <p>iiih, errou a marcha!</p>}
         </AlternativesForm>
       </Widget.Content>
     </Widget>
@@ -185,7 +192,7 @@ export default function QuizPage() {
     // results.push(result);
     setResults([
       ...results,
-      result,
+      (result ? 1 / 10 : 0),
     ]);
   }
 
@@ -226,7 +233,8 @@ export default function QuizPage() {
 
         {screenState === screenStates.LOADING && <LoadingWidget />}
 
-        {screenState === screenStates.RESULT && <ResultWidget results={results} />}
+        {screenState === screenStates.RESULT
+        && <ResultWidget results={results} />}
       </QuizContainer>
     </QuizBackground>
   );

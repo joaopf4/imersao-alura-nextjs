@@ -77,6 +77,27 @@ Widget.Topic = styled.a`
   }
 `;
 
+Widget.Result = styled.div`
+  background-color: ${({ theme }) => `${theme.colors.primary}40`};
+  padding: 2px 15px;
+  margin-bottom: 8px;
+  border-radius: ${({ theme }) => theme.borderRadius};
+  display: block;
+
+  &[data-correct="true"] {
+    background-color: ${({ theme }) => theme.colors.success};
+  }
+
+  & > *:first-child {
+    color: ${({ theme }) => `${theme.colors.contrastText}`};
+    font-size: 14px;
+    margin: 10px auto;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+`;
+
 Widget.Warning = styled.div`
   background-color: transparent;
   margin: 10px auto;
