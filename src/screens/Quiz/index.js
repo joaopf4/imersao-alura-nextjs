@@ -73,6 +73,7 @@ function QuestionWidget({
 }) {
   const [selectedAlternative, setSelectedAlternative] = React.useState(undefined);
   const [isQuestionSubmited, setIsQuestionSubmited] = React.useState(false);
+  const [rightAlternative, setRightAlternative] = React.useState(undefined);
   const questionId = `question__${questionIndex}`;
   const isCorrect = selectedAlternative === question.answer;
   const hasAlternativeSelected = selectedAlternative !== undefined;
@@ -107,8 +108,10 @@ function QuestionWidget({
           onSubmit={(infosDoEvento) => {
             infosDoEvento.preventDefault();
             setIsQuestionSubmited(true);
+            setRightAlternative(true);
             setTimeout(() => {
               addResult(isCorrect);
+              setRightAlternative(undefined);
               onSubmit();
               setIsQuestionSubmited(false);
               setSelectedAlternative(undefined);
@@ -125,7 +128,10 @@ function QuestionWidget({
                 key={alternativeId}
                 htmlFor={alternativeId}
                 data-selected={isSelected}
-                data-status={isQuestionSubmited && alternativeStatus}
+                data-status={isQuestionSubmited && isSelected && alternativeStatus}
+                data-right={
+                  isQuestionSubmited && alternativeIndex === question.answer && rightAlternative
+                }
               >
                 <input
                   style={{ display: 'none' }}
@@ -133,6 +139,8 @@ function QuestionWidget({
                   name={questionId}
                   onChange={() => setSelectedAlternative(alternativeIndex)}
                   type="radio"
+                  checked={isSelected}
+                  disabled={rightAlternative}
                 />
                 {alternative}
               </Widget.Topic>
@@ -183,7 +191,7 @@ export default function QuizPage({ externalQuestions, externalBg }) {
     // fetch() ...
     setTimeout(() => {
       setScreenState(screenStates.QUIZ);
-    }, 1 * 1000);
+    }, 2 * 1000);
   // nasce === didMount
   }, []);
 

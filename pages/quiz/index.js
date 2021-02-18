@@ -127,7 +127,6 @@ function QuestionWidget({
               setRightAlternative(undefined);
               setIsQuestionSubmited(false);
               setSelectedAlternative(undefined);
-              // handleAnswer();
               onSubmit();
             }, 2 * 1000);
           }}

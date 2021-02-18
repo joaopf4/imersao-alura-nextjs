@@ -62,8 +62,19 @@
           "Rad Race",
           "Tour de Freitas"
         ]
+      },
+      {
+        "image": "https://s23705.pcdn.co/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2017/07/caliper-brake-bike.jpg.webp",
+        "title": "Para que server esse pequeno regulador presente na ponta dos conduítes?",
+        "description": "Também conhecido como Barrel Adjuster",
+        "answer": 2,
+        "alternatives": [
+          "Ajustar a distância das sapatas de freio",
+          "Regular a vibração do freio",
+          "Regular a tensão do cabo de aço",
+          "Abrir a pinça de freio"
+        ]
       }
-
     ],
     "external": [
       "https://quiz-justiceleague.levi-magny.vercel.app/",
@@ -71,11 +82,11 @@
     ],
     "theme": {
       "colors": {
-        "primary": "#F57453",
+        "primary": "#ec5128",
         "secondary": "#13543F",
         "mainBg": "#611300",
         "contrastText": "#FFFFFF",
-        "wrong": "#AD3517",
+        "wrong": "#ff0000",
         "success": "#32A882"
       },
       "borderRadius": "10px"
