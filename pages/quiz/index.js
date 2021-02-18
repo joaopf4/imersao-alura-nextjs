@@ -55,7 +55,7 @@ function ResultWidget({ results }) {
         <h3>
           <b>
             { `${(Score >= 50) ? 'Boa, ' : ''}
-            ${(Score >= 30) ? 'Quase, ' : ''}
+            ${(Score >= 30 && Score < 50) ? 'Quase, ' : ''}
             ${(Score <= 20) ? 'Poxa, ' : ''}
           ${sessionStorage.getItem('name')}! Você fez ${Score} ${(Score > 1 || Score === 0) ? 'Pontos' : 'Ponto'}!` }
           </b>
